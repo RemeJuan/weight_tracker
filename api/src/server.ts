@@ -2,7 +2,17 @@ import express from 'express'
 import 'dotenv/config'
 import connection from './db'
 
-import { signup, login, saveWeight, getWeight } from './routes/index.routes'
+import swaggerUi from 'swagger-ui-express'
+import swaggerDocument from './swagger.json'
+
+import {
+  signup,
+  login,
+  saveWeight,
+  getWeight,
+  updateWeight,
+  deleteWeight
+} from './routes/index.routes'
 
 const app = express()
 const port = process.env.PORT || 5006
@@ -10,13 +20,17 @@ const port = process.env.PORT || 5006
 new connection()
 
 app.use(express.json())
-app.use('/login', login)
-app.use('/sign_up', signup)
+app.use('/api/login', login)
+app.use('/api/sign_up', signup)
 
-app.use('/save_weight', saveWeight)
-app.use('/get_weight_history', getWeight)
+app.use('/api/save_weight', saveWeight)
+app.use('/api/get_weight_history', getWeight)
+app.use('/api/update_weight', updateWeight)
+app.use('/api/delete_weight', deleteWeight)
 
-app.get('/health', (req, res) => {
+app.use('/api/docs', swaggerUi.serve)
+app.get('/api/docs', swaggerUi.setup(swaggerDocument))
+app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' })
 })
 
