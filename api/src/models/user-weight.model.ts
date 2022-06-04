@@ -24,6 +24,7 @@ userWeightSchema.virtual('created').get(function () {
 
 export const validate = (userWeight) => {
   const schema = Joi.object({
+    id: Joi.string().optional(),
     weight: Joi.number().required()
   })
   return schema.validate(userWeight)
