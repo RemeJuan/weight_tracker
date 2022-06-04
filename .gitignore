@@ -1,0 +1,5 @@
+api/node_modules
+dist
+.idea
+mongo
+!mongo/.gitkeep
