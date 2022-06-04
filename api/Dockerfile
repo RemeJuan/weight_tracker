@@ -9,6 +9,8 @@ RUN npm run build
 FROM node:17-alpine AS release
 COPY --from=build /dist ./dist
 COPY --from=build /package.json ./package.json
+RUN apk add --no-cache --virtual .gyp python3 make g++
 RUN npm install --production
+RUN apk del .gyp
 EXPOSE 4002
 CMD npm start

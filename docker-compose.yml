@@ -5,11 +5,11 @@ services:
     container_name: api
     restart: always
     build: ./api
-    environment:
-        - PORT=4002
+    env_file:
+      - ./api/.env
     ports:
         - "4002:4002"
-    links:
+    depends_on:
         - mongo
   mongo:
     container_name: mongo
