@@ -20,10 +20,13 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  @JsonKey(name: "_id")
-  String get id => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
+  String get password =>
+      throw _privateConstructorUsedError; // Will only return for user login/signup success
+  @JsonKey(name: "_id")
+  String? get id => throw _privateConstructorUsedError;
   String? get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,9 +40,11 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res>;
   $Res call(
-      {@JsonKey(name: "_id") String id,
+      {String firstName,
+      String lastName,
       String username,
       String password,
+      @JsonKey(name: "_id") String? id,
       String? token});
 }
 
@@ -53,15 +58,21 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? username = freezed,
     Object? password = freezed,
+    Object? id = freezed,
     Object? token = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       username: username == freezed
           ? _value.username
@@ -71,6 +82,10 @@ class _$UserModelCopyWithImpl<$Res> implements $UserModelCopyWith<$Res> {
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -86,9 +101,11 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       __$$_UserModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@JsonKey(name: "_id") String id,
+      {String firstName,
+      String lastName,
       String username,
       String password,
+      @JsonKey(name: "_id") String? id,
       String? token});
 }
 
@@ -104,15 +121,21 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? id = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? username = freezed,
     Object? password = freezed,
+    Object? id = freezed,
     Object? token = freezed,
   }) {
     return _then(_$_UserModel(
-      id: id == freezed
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
+      firstName: firstName == freezed
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastName: lastName == freezed
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
               as String,
       username: username == freezed
           ? _value.username
@@ -122,6 +145,10 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
       token: token == freezed
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -134,9 +161,11 @@ class __$$_UserModelCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserModel extends _UserModel {
   const _$_UserModel(
-      {@JsonKey(name: "_id") required this.id,
+      {required this.firstName,
+      required this.lastName,
       required this.username,
       required this.password,
+      @JsonKey(name: "_id") this.id,
       this.token})
       : super._();
 
@@ -144,18 +173,23 @@ class _$_UserModel extends _UserModel {
       _$$_UserModelFromJson(json);
 
   @override
-  @JsonKey(name: "_id")
-  final String id;
+  final String firstName;
+  @override
+  final String lastName;
   @override
   final String username;
   @override
   final String password;
+// Will only return for user login/signup success
+  @override
+  @JsonKey(name: "_id")
+  final String? id;
   @override
   final String? token;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, username: $username, password: $password, token: $token)';
+    return 'UserModel(firstName: $firstName, lastName: $lastName, username: $username, password: $password, id: $id, token: $token)';
   }
 
   @override
@@ -163,9 +197,11 @@ class _$_UserModel extends _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserModel &&
-            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.firstName, firstName) &&
+            const DeepCollectionEquality().equals(other.lastName, lastName) &&
             const DeepCollectionEquality().equals(other.username, username) &&
             const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.token, token));
   }
 
@@ -173,9 +209,11 @@ class _$_UserModel extends _UserModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(firstName),
+      const DeepCollectionEquality().hash(lastName),
       const DeepCollectionEquality().hash(username),
       const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(token));
 
   @JsonKey(ignore: true)
@@ -191,9 +229,11 @@ class _$_UserModel extends _UserModel {
 
 abstract class _UserModel extends UserModel {
   const factory _UserModel(
-      {@JsonKey(name: "_id") required final String id,
+      {required final String firstName,
+      required final String lastName,
       required final String username,
       required final String password,
+      @JsonKey(name: "_id") final String? id,
       final String? token}) = _$_UserModel;
   const _UserModel._() : super._();
 
@@ -201,12 +241,16 @@ abstract class _UserModel extends UserModel {
       _$_UserModel.fromJson;
 
   @override
-  @JsonKey(name: "_id")
-  String get id => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  @override
+  String get lastName => throw _privateConstructorUsedError;
   @override
   String get username => throw _privateConstructorUsedError;
   @override
   String get password => throw _privateConstructorUsedError;
+  @override // Will only return for user login/signup success
+  @JsonKey(name: "_id")
+  String? get id => throw _privateConstructorUsedError;
   @override
   String? get token => throw _privateConstructorUsedError;
   @override
