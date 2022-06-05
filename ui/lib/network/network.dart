@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:weight_tracker/core/failures.dart';
 import 'package:weight_tracker/models/user_model.dart';
+import 'package:weight_tracker/models/user_weight_model.dart';
 import 'package:weight_tracker/network/source.dart';
 
 class Network {
@@ -27,6 +28,21 @@ class Network {
   Future<Either<Failure, UserModel>> loginUser(UserModel user) async {
     try {
       final response = await _source.loginUser(user);
+
+      return Right(response);
+    } on AssertionError {
+      return const Left(FormatFailure());
+    } on SocketException {
+      return const Left(SocketFailure());
+    } catch (error) {
+      return const Left(ServerFailure());
+    }
+  }
+
+
+  Future<Either<Failure, List<UserWeightModel>>> getWeightHistory() async {
+    try {
+      final response = await _source.getWeightHistory();
 
       return Right(response);
     } on AssertionError {
