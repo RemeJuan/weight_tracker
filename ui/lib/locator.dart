@@ -3,15 +3,17 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:weight_tracker/core/network_manager.dart';
 import 'package:weight_tracker/core/uri_builder.dart';
+import 'package:weight_tracker/models/user_model.dart';
 import 'package:weight_tracker/network/network.dart';
 import 'package:weight_tracker/network/source.dart';
 import 'package:weight_tracker/router/app_router.gr.dart';
 import 'package:weight_tracker/router/auth_guard.dart';
-import 'package:weight_tracker/screens/register/cubit/register_cubit.dart';
+import 'package:weight_tracker/screens/register/bloc/register_form_bloc.dart';
 
 final sl = GetIt.instance;
 
 void initService() {
+  sl.registerSingleton<UserModel>(UserModel.empty());
   sl.registerSingleton<AppRouter>(AppRouter(authGuard: AuthGuard()));
   sl.registerLazySingleton<http.Client>(() => http.Client());
   sl.registerLazySingleton<UriBuilder>(() => const UriBuilder());
@@ -27,5 +29,5 @@ void initService() {
   sl.registerLazySingleton<Network>(() => Network(sl()));
 
   // States
-  sl.registerFactory<RegisterCubit>(() => RegisterCubit(sl()));
+  sl.registerFactory<RegisterFormBloc>(() => RegisterFormBloc(sl()));
 }
