@@ -44,10 +44,15 @@ class Source {
 
   Future<List<UserWeightModel>> getHistory() async {
     final url = uriBuilder.uri("get_weight_history");
+    final result = <UserWeightModel>[];
 
     final response = await networkManager.apiGet(url);
     final body = jsonDecode(response.body);
 
-    return body.map((e) => UserWeightModel.fromJson(e)).toList();
+    for (final b in body) {
+      result.add(UserWeightModel.fromJson(b));
+    }
+
+    return result;
   }
 }
