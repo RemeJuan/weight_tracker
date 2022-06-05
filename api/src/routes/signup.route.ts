@@ -14,7 +14,8 @@ router.post('/', async (req, res) => {
     user.password = await bcrypt.hash(user.password, salt)
     await user.save()
     
-    res.send(user)
+    const token = user.generateAuthToken()
+    res.send({ ...user.toJSON(), token })
   } catch (error) {
     console.log(error)
     res.send('An error occurred')

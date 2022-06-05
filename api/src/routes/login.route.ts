@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
       return res.status(400).send('Invalid email or password')
     
     const token = user.generateAuthToken()
-    res.send({ token })
+    res.send({ ...user.toJSON(), token })
   } catch (error) {
     console.log(error)
     res.send('An error occurred')
