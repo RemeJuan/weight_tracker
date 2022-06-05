@@ -1,40 +1,25 @@
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:weight_tracker/locator.dart';
 import 'package:weight_tracker/models/user_model.dart';
 import 'package:weight_tracker/network/network.dart';
 import 'package:weight_tracker/screens/login/utils/auth_utils.dart';
 
-class RegisterFormBloc extends FormBloc<String, String> {
+class LoginFormBloc extends FormBloc<String, String> {
   final Network network;
 
-  RegisterFormBloc(this.network) : super(isLoading: true) {
+  LoginFormBloc(this.network) : super(isLoading: true) {
     addFieldBlocs(
       fieldBlocs: [
-        firstName,
-        lastName,
         username,
         password,
-        confirmPassword,
       ],
     );
-
-    confirmPassword
-      ..addValidators([FieldBlocValidators.confirmPassword(password)])
-      ..subscribeToFieldBlocs([password]);
   }
 
-  final firstName = TextFieldBloc<String>(
-    validators: [FieldBlocValidators.required],
-  );
-  final lastName = TextFieldBloc<String>(
-    validators: [FieldBlocValidators.required],
-  );
   final username = TextFieldBloc<String>(
     validators: [FieldBlocValidators.required],
   );
   final password = TextFieldBloc<String>(
-    validators: [FieldBlocValidators.required],
-  );
-  final confirmPassword = TextFieldBloc<String>(
     validators: [FieldBlocValidators.required],
   );
 
@@ -42,20 +27,19 @@ class RegisterFormBloc extends FormBloc<String, String> {
   void submit() async {
     emitSubmitting();
 
-    final user = UserModel(
-      firstName: firstName.value,
-      lastName: lastName.value,
+    final user = sl<UserModel>().copyWith(
       username: username.value,
       password: password.value,
     );
 
     try {
-      final inputEither = await network.registerUser(user);
+      final inputEither = await network.loginUser(user);
       inputEither.fold(
         (l) => emitFailure(failureResponse: l.toString()),
         (r) async {
           AuthUtils.storeUser(user);
           AuthUtils.storeToken(user);
+
           emitSuccess();
         },
       );

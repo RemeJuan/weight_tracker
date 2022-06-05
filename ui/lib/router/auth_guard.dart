@@ -2,12 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:weight_tracker/core/constants.dart';
 import 'package:weight_tracker/locator.dart';
+import 'package:weight_tracker/screens/login/utils/auth_utils.dart';
 
 import 'app_router.gr.dart';
 
 class AuthGuard extends AutoRouteGuard {
   @override
   void onNavigation(resolver, router) async {
+    AuthUtils.loadUserIntoMemory();
     // the navigation is paused until resolver.next() is called with either
     // true to resume/continue navigation or false to abort navigation
 
