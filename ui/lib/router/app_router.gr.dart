@@ -16,7 +16,7 @@ import 'package:weight_tracker/router/auth_guard.dart' as _i7;
 import 'package:weight_tracker/screens/landing_screen.dart' as _i4;
 import 'package:weight_tracker/screens/login_screen.dart' as _i1;
 import 'package:weight_tracker/screens/logout_screen.dart' as _i3;
-import 'package:weight_tracker/screens/register_screen.dart' as _i2;
+import 'package:weight_tracker/screens/register/register_screen.dart' as _i2;
 
 class AppRouter extends _i5.RootStackRouter {
   AppRouter(
