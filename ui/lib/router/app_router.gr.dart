@@ -48,18 +48,17 @@ class AppRouter extends _i5.RootStackRouter {
 
   @override
   List<_i5.RouteConfig> get routes => [
-        _i5.RouteConfig(LoginRoute.name, path: '/'),
+        _i5.RouteConfig(LoginRoute.name, path: '/login-screen'),
         _i5.RouteConfig(RegisterRoute.name, path: '/register-screen'),
         _i5.RouteConfig(LogoutRoute.name, path: '/logout-screen'),
-        _i5.RouteConfig(LandingRoute.name,
-            path: '/landing-screen', guards: [authGuard])
+        _i5.RouteConfig(LandingRoute.name, path: '/', guards: [authGuard])
       ];
 }
 
 /// generated route for
 /// [_i1.LoginScreen]
 class LoginRoute extends _i5.PageRouteInfo<void> {
-  const LoginRoute() : super(LoginRoute.name, path: '/');
+  const LoginRoute() : super(LoginRoute.name, path: '/login-screen');
 
   static const String name = 'LoginRoute';
 }
@@ -83,7 +82,7 @@ class LogoutRoute extends _i5.PageRouteInfo<void> {
 /// generated route for
 /// [_i4.LandingScreen]
 class LandingRoute extends _i5.PageRouteInfo<void> {
-  const LandingRoute() : super(LandingRoute.name, path: '/landing-screen');
+  const LandingRoute() : super(LandingRoute.name, path: '/');
 
   static const String name = 'LandingRoute';
 }
