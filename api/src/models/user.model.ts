@@ -29,10 +29,18 @@ userSchema.methods.generateAuthToken = function () {
 
 export const User =  model('user', userSchema)
 
-export const validate = (user) => {
+export const registerValidate = (user) => {
   const schema = Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+  })
+  return schema.validate(user)
+}
+
+export const loginValidate = (user) => {
+  const schema = Joi.object({
     username: Joi.string().required(),
     password: Joi.string().required(),
   })

@@ -1,11 +1,11 @@
-import { User, validate } from '../models/user.model'
+import { loginValidate, User } from '../models/user.model'
 import bcrypt from 'bcrypt'
 import express from 'express'
 const router = express.Router()
 
 router.post('/', async (req, res) => {
   try {
-    const { error } = validate(req.body)
+    const { error } = loginValidate(req.body)
     if (error) return res.status(400).send(error.details[0].message)
     
     const { email, password } = req.body
