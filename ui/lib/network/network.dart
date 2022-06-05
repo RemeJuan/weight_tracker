@@ -52,4 +52,36 @@ class Network {
       return const Left(ServerFailure());
     }
   }
+
+  Future<Either<Failure, bool>> editWeight(
+    UserWeightModel weight,
+  ) async {
+    try {
+      await _source.editWeight(weight);
+
+      return const Right(true);
+    } on AssertionError {
+      return const Left(FormatFailure());
+    } on SocketException {
+      return const Left(SocketFailure());
+    } catch (error) {
+      return const Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, bool>> deleteWeight(
+    UserWeightModel weight,
+  ) async {
+    try {
+      await _source.deleteWeight(weight);
+
+      return const Right(true);
+    } on AssertionError {
+      return const Left(FormatFailure());
+    } on SocketException {
+      return const Left(SocketFailure());
+    } catch (error) {
+      return const Left(ServerFailure());
+    }
+  }
 }

@@ -20,7 +20,7 @@ UserWeightModel _$UserWeightModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserWeightModel {
-  int get weight => throw _privateConstructorUsedError;
+  num get weight => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get created => throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ abstract class $UserWeightModelCopyWith<$Res> {
   factory $UserWeightModelCopyWith(
           UserWeightModel value, $Res Function(UserWeightModel) then) =
       _$UserWeightModelCopyWithImpl<$Res>;
-  $Res call({int weight, String id, String userId, String created});
+  $Res call({num weight, String id, String userId, String created});
 }
 
 /// @nodoc
@@ -59,7 +59,7 @@ class _$UserWeightModelCopyWithImpl<$Res>
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -83,7 +83,7 @@ abstract class _$$_UserWeightModelCopyWith<$Res>
           _$_UserWeightModel value, $Res Function(_$_UserWeightModel) then) =
       __$$_UserWeightModelCopyWithImpl<$Res>;
   @override
-  $Res call({int weight, String id, String userId, String created});
+  $Res call({num weight, String id, String userId, String created});
 }
 
 /// @nodoc
@@ -108,7 +108,7 @@ class __$$_UserWeightModelCopyWithImpl<$Res>
       weight: weight == freezed
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
-              as int,
+              as num,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -139,7 +139,7 @@ class _$_UserWeightModel extends _UserWeightModel {
       _$$_UserWeightModelFromJson(json);
 
   @override
-  final int weight;
+  final num weight;
   @override
   final String id;
   @override
@@ -185,7 +185,7 @@ class _$_UserWeightModel extends _UserWeightModel {
 
 abstract class _UserWeightModel extends UserWeightModel {
   const factory _UserWeightModel(
-      {required final int weight,
+      {required final num weight,
       required final String id,
       required final String userId,
       required final String created}) = _$_UserWeightModel;
@@ -195,7 +195,7 @@ abstract class _UserWeightModel extends UserWeightModel {
       _$_UserWeightModel.fromJson;
 
   @override
-  int get weight => throw _privateConstructorUsedError;
+  num get weight => throw _privateConstructorUsedError;
   @override
   String get id => throw _privateConstructorUsedError;
   @override

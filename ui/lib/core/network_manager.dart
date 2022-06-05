@@ -66,8 +66,8 @@ class NetworkManager {
     }
   }
 
-  Future<http.Response> apiPatch(Uri url, Map<String, dynamic> body) async {
-    final response = await client.patch(
+  Future<http.Response> apiPut(Uri url, Map<String, dynamic> body) async {
+    final response = await client.put(
       url,
       headers: await _headers(),
       body: jsonEncode(body),

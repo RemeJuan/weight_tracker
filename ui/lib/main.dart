@@ -20,7 +20,7 @@ class WeightTrackerApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Colors.red,
+        primaryColor: Colors.orange,
       ),
       routerDelegate: AutoRouterDelegate(appRouter),
       routeInformationParser: appRouter.defaultRouteParser(),

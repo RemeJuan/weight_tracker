@@ -55,4 +55,23 @@ class Source {
 
     return result;
   }
+
+  Future<bool> editWeight(UserWeightModel weight) async {
+    final url = uriBuilder.uri("update_weight");
+
+    final payload = {
+      "id": weight.id,
+      "weight": weight.weight,
+    };
+    final response = await networkManager.apiPut(url, payload);
+    return response.statusCode == 200;
+  }
+
+  Future<bool> deleteWeight(UserWeightModel weight) async {
+    final url = uriBuilder.uri("delete_weight/${weight.id}");
+
+    final response = await networkManager.apiDelete(url);
+
+    return response.statusCode == 200;
+  }
 }

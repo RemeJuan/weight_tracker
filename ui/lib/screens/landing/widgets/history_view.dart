@@ -4,6 +4,9 @@ import 'package:weight_tracker/models/user_weight_model.dart';
 import 'package:weight_tracker/screens/landing/cubit/landing_cubit.dart';
 import 'package:weight_tracker/screens/landing/cubit/landing_state.dart';
 
+part 'delete_confirm.dart';
+part 'edit_weight.dart';
+
 class HistoryView extends StatelessWidget {
   const HistoryView({Key? key}) : super(key: key);
 
@@ -34,6 +37,19 @@ class HistoryView extends StatelessWidget {
               title: Text("${weight.weight.toString()} kg"),
               subtitle: Text(
                 "${DateFormat.yMMMd().format(date)} at ${DateFormat.Hm().format(date)}",
+              ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit),
+                    onPressed: () => _editDialog(context, weight),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => _deleteDialog(context, weight),
+                  )
+                ],
               ),
             );
           },

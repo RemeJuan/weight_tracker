@@ -8,7 +8,7 @@ part of 'user_weight_model.dart';
 
 _$_UserWeightModel _$$_UserWeightModelFromJson(Map<String, dynamic> json) =>
     _$_UserWeightModel(
-      weight: json['weight'] as int,
+      weight: json['weight'] as num,
       id: json['id'] as String,
       userId: json['userId'] as String,
       created: json['created'] as String,

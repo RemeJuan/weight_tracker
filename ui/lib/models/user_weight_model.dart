@@ -8,7 +8,7 @@ class UserWeightModel with _$UserWeightModel {
   const UserWeightModel._();
 
   const factory UserWeightModel({
-    required int weight,
+    required num weight,
     required String id,
     required String userId,
     required String created,
