@@ -25,7 +25,7 @@ class NetworkManager {
 
     if (response.statusCode == 200) {
       return response;
-    } else if (response.statusCode == 401) {
+    } else if ([401, 403].contains(response.statusCode)) {
       return _handleUnauthorized(response);
     } else {
       throw ServerException();
@@ -42,7 +42,7 @@ class NetworkManager {
 
     if (response.statusCode == 200) {
       return response;
-    } else if (response.statusCode == 401) {
+    } else if ([401, 403].contains(response.statusCode)) {
       return _handleUnauthorized(response);
     } else {
       throw ServerException();
@@ -59,7 +59,7 @@ class NetworkManager {
 
     if (response.statusCode == 200) {
       return response;
-    } else if (response.statusCode == 401) {
+    } else if ([401, 403].contains(response.statusCode)) {
       return _handleUnauthorized(response);
     } else {
       throw ServerException();
@@ -77,7 +77,7 @@ class NetworkManager {
 
     if (response.statusCode == 200) {
       return response;
-    } else if (response.statusCode == 401) {
+    } else if ([401, 403].contains(response.statusCode)) {
       return _handleUnauthorized(response);
     } else {
       throw ServerException();
@@ -94,7 +94,7 @@ class NetworkManager {
 
   Future<Map<String, String>> _headers() async {
     return {
-      "x-auth-token": "Bearer ${await secureStorage.read(key: SECURE_API_KEY)}",
+      "x-auth-token": "${await secureStorage.read(key: SECURE_API_KEY)}",
       "Content-Type": "application/json"
     };
   }
