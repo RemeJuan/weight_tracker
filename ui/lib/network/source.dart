@@ -17,6 +17,8 @@ class Source {
     final url = uriBuilder.uri("sign_up");
 
     final payload = {
+      "firstName": user.firstName,
+      "lastName": user.lastName,
       "username": user.username,
       "password": user.password,
     };
