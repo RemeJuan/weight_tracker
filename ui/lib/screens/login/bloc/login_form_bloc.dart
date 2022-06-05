@@ -44,7 +44,6 @@ class LoginFormBloc extends FormBloc<String, String> {
         },
       );
     } catch (e) {
-      print(e);
       emitFailure(failureResponse: e.toString());
     }
   }

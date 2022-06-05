@@ -8,6 +8,7 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(context) {
     return const AppTemplate(
+      actions: [],
       child: RegisterForm(),
     );
   }
