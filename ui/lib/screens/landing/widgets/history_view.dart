@@ -20,6 +20,9 @@ class HistoryView extends StatelessWidget {
       case HistoryStatus.loading:
         return const Center(child: CircularProgressIndicator());
       case HistoryStatus.loaded:
+        if (history.isEmpty) {
+          return const Center(child: Text('No weight has been entered yet.'));
+        }
         return ListView.builder(
           itemCount: history.length,
           shrinkWrap: true,
