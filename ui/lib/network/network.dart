@@ -39,10 +39,9 @@ class Network {
     }
   }
 
-
-  Future<Either<Failure, List<UserWeightModel>>> getWeightHistory() async {
+  Future<Either<Failure, List<UserWeightModel>>> getHistory() async {
     try {
-      final response = await _source.getWeightHistory();
+      final response = await _source.getHistory();
 
       return Right(response);
     } on AssertionError {

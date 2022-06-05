@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:weight_tracker/core/network_manager.dart';
 import 'package:weight_tracker/core/uri_builder.dart';
-import 'package:weight_tracker/locator.dart';
 import 'package:weight_tracker/models/user_model.dart';
 import 'package:weight_tracker/models/user_weight_model.dart';
 
@@ -43,7 +42,7 @@ class Source {
     return UserModel.fromJson(body);
   }
 
-  Future<List<UserWeightModel>> getWeightHistory() async {
+  Future<List<UserWeightModel>> getHistory() async {
     final url = uriBuilder.uri("get_weight_history");
 
     final response = await networkManager.apiGet(url);
