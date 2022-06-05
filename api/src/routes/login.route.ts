@@ -6,19 +6,19 @@ const router = express.Router()
 router.post('/', async (req, res) => {
   try {
     const { error } = loginValidate(req.body)
-    if (error) return res.status(400).send(error.details[0].message)
+    if (error) return res.send(error.details[0].message, 400)
     
-    const { email, password } = req.body
+    const { username, password } = req.body
     
-    const user = await User.findOne({ email: email })
-    if (!user) return res.status(400).send('Invalid email or password')
+    const user = await User.findOne({ username: username })
+    if (!user) return res.send('Invalid username or password', 400)
     
     const validPassword = await bcrypt.compare(
       password,
       user.password
     )
     if (!validPassword)
-      return res.status(400).send('Invalid email or password')
+      return res.send('Invalid username or password', 400)
     
     const token = user.generateAuthToken()
     res.send({ ...user.toJSON(), token })
