@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LandingState {
   HistoryStatus get historyStatus => throw _privateConstructorUsedError;
+  CreateStatus get createStatus => throw _privateConstructorUsedError;
   List<UserWeightModel> get history => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -29,7 +30,10 @@ abstract class $LandingStateCopyWith<$Res> {
   factory $LandingStateCopyWith(
           LandingState value, $Res Function(LandingState) then) =
       _$LandingStateCopyWithImpl<$Res>;
-  $Res call({HistoryStatus historyStatus, List<UserWeightModel> history});
+  $Res call(
+      {HistoryStatus historyStatus,
+      CreateStatus createStatus,
+      List<UserWeightModel> history});
 }
 
 /// @nodoc
@@ -43,6 +47,7 @@ class _$LandingStateCopyWithImpl<$Res> implements $LandingStateCopyWith<$Res> {
   @override
   $Res call({
     Object? historyStatus = freezed,
+    Object? createStatus = freezed,
     Object? history = freezed,
   }) {
     return _then(_value.copyWith(
@@ -50,6 +55,10 @@ class _$LandingStateCopyWithImpl<$Res> implements $LandingStateCopyWith<$Res> {
           ? _value.historyStatus
           : historyStatus // ignore: cast_nullable_to_non_nullable
               as HistoryStatus,
+      createStatus: createStatus == freezed
+          ? _value.createStatus
+          : createStatus // ignore: cast_nullable_to_non_nullable
+              as CreateStatus,
       history: history == freezed
           ? _value.history
           : history // ignore: cast_nullable_to_non_nullable
@@ -65,7 +74,10 @@ abstract class _$$_LandingStateCopyWith<$Res>
           _$_LandingState value, $Res Function(_$_LandingState) then) =
       __$$_LandingStateCopyWithImpl<$Res>;
   @override
-  $Res call({HistoryStatus historyStatus, List<UserWeightModel> history});
+  $Res call(
+      {HistoryStatus historyStatus,
+      CreateStatus createStatus,
+      List<UserWeightModel> history});
 }
 
 /// @nodoc
@@ -82,6 +94,7 @@ class __$$_LandingStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? historyStatus = freezed,
+    Object? createStatus = freezed,
     Object? history = freezed,
   }) {
     return _then(_$_LandingState(
@@ -89,6 +102,10 @@ class __$$_LandingStateCopyWithImpl<$Res>
           ? _value.historyStatus
           : historyStatus // ignore: cast_nullable_to_non_nullable
               as HistoryStatus,
+      createStatus: createStatus == freezed
+          ? _value.createStatus
+          : createStatus // ignore: cast_nullable_to_non_nullable
+              as CreateStatus,
       history: history == freezed
           ? _value._history
           : history // ignore: cast_nullable_to_non_nullable
@@ -102,12 +119,15 @@ class __$$_LandingStateCopyWithImpl<$Res>
 class _$_LandingState extends _LandingState {
   const _$_LandingState(
       {required this.historyStatus,
+      required this.createStatus,
       required final List<UserWeightModel> history})
       : _history = history,
         super._();
 
   @override
   final HistoryStatus historyStatus;
+  @override
+  final CreateStatus createStatus;
   final List<UserWeightModel> _history;
   @override
   List<UserWeightModel> get history {
@@ -117,7 +137,7 @@ class _$_LandingState extends _LandingState {
 
   @override
   String toString() {
-    return 'LandingState(historyStatus: $historyStatus, history: $history)';
+    return 'LandingState(historyStatus: $historyStatus, createStatus: $createStatus, history: $history)';
   }
 
   @override
@@ -127,6 +147,8 @@ class _$_LandingState extends _LandingState {
             other is _$_LandingState &&
             const DeepCollectionEquality()
                 .equals(other.historyStatus, historyStatus) &&
+            const DeepCollectionEquality()
+                .equals(other.createStatus, createStatus) &&
             const DeepCollectionEquality().equals(other._history, _history));
   }
 
@@ -134,6 +156,7 @@ class _$_LandingState extends _LandingState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(historyStatus),
+      const DeepCollectionEquality().hash(createStatus),
       const DeepCollectionEquality().hash(_history));
 
   @JsonKey(ignore: true)
@@ -145,11 +168,14 @@ class _$_LandingState extends _LandingState {
 abstract class _LandingState extends LandingState {
   const factory _LandingState(
       {required final HistoryStatus historyStatus,
+      required final CreateStatus createStatus,
       required final List<UserWeightModel> history}) = _$_LandingState;
   const _LandingState._() : super._();
 
   @override
   HistoryStatus get historyStatus => throw _privateConstructorUsedError;
+  @override
+  CreateStatus get createStatus => throw _privateConstructorUsedError;
   @override
   List<UserWeightModel> get history => throw _privateConstructorUsedError;
   @override

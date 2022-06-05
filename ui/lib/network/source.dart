@@ -56,6 +56,18 @@ class Source {
     return result;
   }
 
+  Future<UserWeightModel> addWeight(String userWeight) async {
+    final url = uriBuilder.uri("save_weight");
+
+    final payload = {
+      "weight": userWeight,
+    };
+    final response = await networkManager.apiPost(url, payload);
+    final body = jsonDecode(response.body);
+
+    return UserWeightModel.fromJson(body);
+  }
+
   Future<bool> editWeight(UserWeightModel weight) async {
     final url = uriBuilder.uri("update_weight");
 

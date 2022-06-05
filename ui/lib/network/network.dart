@@ -53,6 +53,22 @@ class Network {
     }
   }
 
+  Future<Either<Failure, UserWeightModel>> addWeight(
+    String userWeight,
+  ) async {
+    try {
+      final response = await _source.addWeight(userWeight);
+
+      return Right(response);
+    } on AssertionError {
+      return const Left(FormatFailure());
+    } on SocketException {
+      return const Left(SocketFailure());
+    } catch (error) {
+      return const Left(ServerFailure());
+    }
+  }
+
   Future<Either<Failure, bool>> editWeight(
     UserWeightModel weight,
   ) async {

@@ -18,11 +18,36 @@ class LandingCubit extends Cubit<LandingState> {
         (failure) => emit(state.copyWith(historyStatus: HistoryStatus.error)),
         (userWeights) => emit(state.copyWith(
           historyStatus: HistoryStatus.loaded,
-          history: userWeights,
+          history: userWeights
+            ..sort(
+              (a, b) => DateTime.parse(b.created).compareTo(
+                DateTime.parse(a.created),
+              ),
+            ),
         )),
       );
     } catch (e) {
       emit(state.copyWith(historyStatus: HistoryStatus.error));
+    }
+  }
+
+  Future<void> addWeight(String userWeight) async {
+    emit(state.copyWith(createStatus: CreateStatus.submitting));
+    try {
+      final inputEither = await _network.addWeight(userWeight);
+      inputEither.fold(
+        (f) => emit(state.copyWith(createStatus: CreateStatus.error)),
+        (w) => emit(state.copyWith(
+          createStatus: CreateStatus.success,
+          history: [...state.history, w]..sort(
+              (a, b) => DateTime.parse(b.created).compareTo(
+                DateTime.parse(a.created),
+              ),
+            ),
+        )),
+      );
+    } catch (e) {
+      emit(state.copyWith(createStatus: CreateStatus.error));
     }
   }
 
