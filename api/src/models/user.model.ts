@@ -4,9 +4,18 @@ import Joi from 'joi'
 import { env } from 'process'
 
 const userSchema = new Schema({
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
   username: {
     type: String,
     required: true,
+    unique : true,
   },
   password: {
     type: String,
@@ -22,6 +31,8 @@ export const User =  model('user', userSchema)
 
 export const validate = (user) => {
   const schema = Joi.object({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
     username: Joi.string().required(),
     password: Joi.string().required(),
   })
