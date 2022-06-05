@@ -23,4 +23,18 @@ class Network {
       return const Left(ServerFailure());
     }
   }
+
+  Future<Either<Failure, UserModel>> loginUser(UserModel user) async {
+    try {
+      final response = await _source.loginUser(user);
+
+      return Right(response);
+    } on AssertionError {
+      return const Left(FormatFailure());
+    } on SocketException {
+      return const Left(SocketFailure());
+    } catch (error) {
+      return const Left(ServerFailure());
+    }
+  }
 }

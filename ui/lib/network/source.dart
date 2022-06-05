@@ -27,4 +27,17 @@ class Source {
 
     return UserModel.fromJson(body);
   }
+
+  Future<UserModel> loginUser(UserModel user) async {
+    final url = uriBuilder.uri("login");
+
+    final payload = {
+      "username": user.username,
+      "password": user.password,
+    };
+    final response = await networkManager.apiPost(url, payload);
+    final body = jsonDecode(response.body);
+
+    return UserModel.fromJson(body);
+  }
 }

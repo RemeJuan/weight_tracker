@@ -8,6 +8,7 @@ import 'package:weight_tracker/network/network.dart';
 import 'package:weight_tracker/network/source.dart';
 import 'package:weight_tracker/router/app_router.gr.dart';
 import 'package:weight_tracker/router/auth_guard.dart';
+import 'package:weight_tracker/screens/login/bloc/login_form_bloc.dart';
 import 'package:weight_tracker/screens/register/bloc/register_form_bloc.dart';
 
 final sl = GetIt.instance;
@@ -30,4 +31,5 @@ void initService() {
 
   // States
   sl.registerFactory<RegisterFormBloc>(() => RegisterFormBloc(sl()));
+  sl.registerFactory<LoginFormBloc>(() => LoginFormBloc(sl()));
 }
