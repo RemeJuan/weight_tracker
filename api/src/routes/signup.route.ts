@@ -12,7 +12,9 @@ router.post('/', async (req, res) => {
     
     const salt = await bcrypt.genSalt(Number(process.env.SALT))
     user.password = await bcrypt.hash(user.password, salt)
-    await user.save()
+    const { err } = await user.save()
+    
+    if (err) return res.send(err, 400)
     
     const token = user.generateAuthToken()
     res.send({ ...user.toJSON(), token })
