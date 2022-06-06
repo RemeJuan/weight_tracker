@@ -54,8 +54,9 @@ class RegisterFormBloc extends FormBloc<String, String> {
       inputEither.fold(
         (l) => emitFailure(failureResponse: l.toString()),
         (r) async {
-          await AuthUtils.storeUser(user);
-          await AuthUtils.storeToken(user);
+          await AuthUtils.storeUser(r);
+          await AuthUtils.storeToken(r);
+
           emitSuccess();
         },
       );
