@@ -31,27 +31,28 @@ class LandingScreen extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                LineChart(
-                  width: MediaQuery.of(context).size.width,
-                  height: 180,
-                  insidePadding: 50,
-                  data: state.history.reversed
-                      .map(
-                        (e) => LineChartModel(
-                          date: DateTime.parse(e.created),
-                          amount: e.weight.toDouble(),
-                        ),
-                      )
-                      .toList(),
-                  linePaint: Paint()
-                    ..strokeWidth = 3
-                    ..style = PaintingStyle.stroke
-                    ..color = Colors.blue,
-                  circlePaint: Paint()..color = Colors.white,
-                  circleRadiusValue: 4,
-                  showPointer: true,
-                  showCircles: true,
-                ),
+                if (state.history.length >= 3)
+                  LineChart(
+                    width: MediaQuery.of(context).size.width,
+                    height: 180,
+                    insidePadding: 50,
+                    data: state.history.reversed
+                        .map(
+                          (e) => LineChartModel(
+                            date: DateTime.parse(e.created),
+                            amount: e.weight.toDouble(),
+                          ),
+                        )
+                        .toList(),
+                    linePaint: Paint()
+                      ..strokeWidth = 3
+                      ..style = PaintingStyle.stroke
+                      ..color = Colors.blue,
+                    circlePaint: Paint()..color = Colors.white,
+                    circleRadiusValue: 4,
+                    showPointer: true,
+                    showCircles: true,
+                  ),
                 const Expanded(
                   child: HistoryView(),
                 ),
