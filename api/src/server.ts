@@ -16,7 +16,7 @@ import {
 } from './routes/index.routes'
 
 const app = express()
-const port = process.env.PORT || 5006
+const port = process.env.NODE_PORT || 5006
 
 new connection()
 
